@@ -1,2 +1,3 @@
 *.csv
 *.py
+*_recnet_stats.json
