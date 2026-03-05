@@ -9,5 +9,7 @@ import (
 func main() {
 	csv2json.Csv2json()
 	coldHot.CountResult()
-	recentn.RecentN()
+	for i := 0; i < 10; i++ {
+		recentn.RecentN()
+	}
 }
