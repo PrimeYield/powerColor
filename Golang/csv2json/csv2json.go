@@ -4,6 +4,7 @@ import (
 	"encoding/csv"
 	"encoding/json"
 	"fmt"
+	"log"
 	"os"
 	"path/filepath"
 	"strconv"
@@ -17,6 +18,7 @@ type LotteryData struct {
 func ProcessCSV(filename string, results map[int]LotteryData) error {
 	file, err := os.Open(filename)
 	if err != nil {
+		// log.Fatal("os.Open() has wrong", err)
 		return err
 	}
 	defer file.Close()
@@ -24,36 +26,42 @@ func ProcessCSV(filename string, results map[int]LotteryData) error {
 	reader := csv.NewReader(file)
 	records, err := reader.ReadAll()
 	if err != nil {
+		// log.Fatal("reader.ReadAll() has wrong:", err)
 		return err
 	}
 
+	count := 0
+
 	for i, row := range records {
-		if i == 0 || len(row) < 8 {
+		if i == 0 || len(row) < 12 {
 			continue
 		}
+
+		count++
 
 		term, _ := strconv.Atoi(row[0])
 
 		var firstZone []int
-		for j := 1; j <= 6; j++ {
+		for j := 5; j <= 10; j++ {
 			num, _ := strconv.Atoi(row[j])
 			firstZone = append(firstZone, num)
 		}
 
-		secondZone, _ := strconv.Atoi(row[7])
+		secondZone, _ := strconv.Atoi(row[11])
 
 		results[term] = LotteryData{
 			FirstZone:  firstZone,
 			SecondZone: secondZone,
 		}
 	}
+	log.Printf("the file {%s} operation {%d} rows", filename, count)
 	return nil
 }
 
 func Csv2json() {
 	allResults := make(map[int]LotteryData)
 
-	files, err := filepath.Glob("./history/*.csv")
+	files, err := filepath.Glob("history/*.csv")
 	if err != nil {
 		fmt.Printf("讀取目錄失敗: %v\n", err)
 		return
@@ -75,7 +83,7 @@ func Csv2json() {
 		return
 	}
 
-	outputFile := "from2014to2026.json"
+	outputFile := "from2008to2026.json"
 	err = os.WriteFile(outputFile, jsonData, 0644)
 	if err != nil {
 		fmt.Printf("寫入文件失敗: %v\n", err)

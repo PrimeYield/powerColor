@@ -9,7 +9,7 @@ import (
 )
 
 func CountResult() {
-	fileData, err := os.ReadFile("from2014to2026.json")
+	fileData, err := os.ReadFile("from2008to2026.json")
 	if err != nil {
 		fmt.Println("讀取合併文件失敗:", err)
 		return
