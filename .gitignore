@@ -2,6 +2,7 @@
 *.py
 *.json
 *.pth
+*.pyc
 
 !crawler.py
 !crawlerClean.py
