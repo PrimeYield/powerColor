@@ -30,7 +30,7 @@ sorted_keys = sorted(final_data.keys())
 sorted_final_data = {k: final_data[k] for k in sorted_keys}
 
 # 4. 輸出成最終的單一檔案
-output_filename = "from2008to2023_lotto_appear_results_merged.json"
+output_filename = "from2008to2026_lotto_appear_results.json"
 with open(output_filename, "w", encoding="utf-8") as f:
     json.dump(sorted_final_data, f, ensure_ascii=False, indent=4)
 
