@@ -29,7 +29,7 @@ inputNum:
 	}
 
 	global.RecentN = input
-	fileData, _ := os.ReadFile("from2008to2026.json")
+	fileData, _ := os.ReadFile("./data/from2008to2026.json")
 	var allData map[int]csv2json.LotteryData
 	json.Unmarshal(fileData, &allData)
 
