@@ -2,3 +2,7 @@
 *.py
 *_recent_stats.json
 *.pth
+
+!crawler.py
+!crawlerClean.py
+!sort.py
