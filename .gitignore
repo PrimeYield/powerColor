@@ -7,7 +7,7 @@
 !crawler.py
 !crawlerClean.py
 !sort.py
-!from2008to2026_appear_sort_results.json
 !from2008to2026_lotto_appear_results_merged.json
 !from2008to2026_lotto_size_results.json
-!from2008to2026_size_sort_results.json
+!sort_from2008to2026_lotto_appear_results.json
+!sort_from2008to2026_lotto_size_results.json
